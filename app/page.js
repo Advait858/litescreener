@@ -31,8 +31,16 @@ export default function Home() {
 
   return (
     <main className="container mx-auto p-4">
-      <div className="text-center text-4xl mt-10 font-bold">
-        Litecoin Screener
+      <div className="flex justify-between items-center mt-10">
+        <div className="flex justify-end w-full">
+          <Image
+            src="/ralitecorner.png" // Replace with the path to your image
+            alt="RA Lite Logo"
+            width={300} // Set appropriate width
+            height={300} // Set appropriate height
+            className="object-contain"
+         />
+        </div>
       </div>
 
       {/* Display Litecoin Price and Market Info */}
