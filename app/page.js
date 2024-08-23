@@ -30,11 +30,11 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="container mx-auto p-4">
+    <main className="container mx-auto p-4 bg-black">
       <div className="flex justify-between items-center mt-10">
-        <div className="flex justify-end w-full">
+        <div className="flex justify-center w-full">
           <Image
-            src="/ralitecorner.png" // Replace with the path to your image
+            src="/ralitecornerdark.png" // Replace with the path to your image
             alt="RA Lite Logo"
             width={300} // Set appropriate width
             height={300} // Set appropriate height
@@ -77,7 +77,7 @@ export default function Home() {
 
       {/* Display Latest Transactions */}
       <div className="mt-10">
-        <h2 className="text-center text-3xl font-bold">Latest Transactions</h2>
+        <h2 className="text-center text-3xl font-bold text-white">Latest Transactions</h2>
         <div className="mt-5 grid grid-cols-1 gap-6">
           {latestTransactions.map((transaction, index) => (
             <div key={index} className="bg-gray-50 p-4 rounded-lg shadow-md">
@@ -92,7 +92,7 @@ export default function Home() {
 
       {/* Display Litecoin Blockchain Info */}
       <div className="mt-10">
-        <h2 className="text-center text-3xl font-bold">Blockchain Info</h2>
+        <h2 className="text-center text-3xl font-bold text-white">Blockchain Info</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-5">
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <h2 className="text-xl font-semibold">Total Blocks</h2>
