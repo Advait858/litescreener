@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
@@ -27,10 +27,20 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="w-full min-h-screen bg-black text-gray-100 font-sans">
-      <div className="flex justify-center items-center py-12">
+    <main className="relative w-full min-h-screen bg-black text-gray-100 font-sans">
+      <div
+        className="fixed inset-0 w-full h-full bg-cover bg-center z-0"
+        style={{
+          backgroundImage: "url('/bg3.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed',
+        }}
+      ></div>
+
+      <div className="relative z-10 flex justify-center items-center py-6">
         <Image
-          src="/ralitecornerdark.png"
+          src="/ralitetrans.png"
           alt="RA Lite Logo"
           width={300}
           height={300}
@@ -38,42 +48,50 @@ export default function Home() {
         />
       </div>
 
+      <div className="flex justify-center relative z-10 max-w-screen-xl mx-auto mt-4">
+        <div className="space-x-4">
+          <button type="button" className="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:focus:ring-yellow-900">Screener</button>
+          <button type="button" className="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:focus:ring-yellow-900">Wallet</button>
+        </div>
+      </div>
+
+
       {litecoinData && (
-        <div className="max-w-screen-lg mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 px-4">
-          <div className="bg-gray-900 p-8 rounded-lg shadow-lg border border-gray-800 transition-transform transform hover:scale-105">
-            <h2 className="text-3xl font-extrabold text-white font-display">Price</h2>
-            <p className="text-4xl font-bold text-green-500">${litecoinData.usd}</p>
+        <div className="relative z-10 max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 px-4">
+          <div className="bg-gray-900/30 backdrop-blur-lg backdrop-brightness-125 p-8 h-52 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+            <h2 className="text-2xl font-extrabold text-white font-display">Price</h2>
+            <p className="text-3xl font-bold text-green-500">${litecoinData.usd}</p>
           </div>
-          <div className="bg-gray-900 p-8 rounded-lg shadow-lg border border-gray-800 transition-transform transform hover:scale-105">
-            <h2 className="text-3xl font-extrabold text-white font-display">Market Cap</h2>
-            <p className="text-4xl font-bold text-green-500">${litecoinData.usd_market_cap.toLocaleString()}</p>
+          <div className="bg-gray-900/30 backdrop-blur-lg backdrop-brightness-125 p-8 h-52 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+            <h2 className="text-2xl font-extrabold text-white font-display">Market Cap</h2>
+            <p className="text-3xl font-bold text-green-500">${litecoinData.usd_market_cap.toLocaleString()}</p>
           </div>
-          <div className="bg-gray-900 p-8 rounded-lg shadow-lg border border-gray-800 transition-transform transform hover:scale-105">
-            <h2 className="text-3xl font-extrabold text-white font-display">24h Volume</h2>
-            <p className="text-4xl font-bold text-green-500">${litecoinData.usd_24h_vol.toLocaleString()}</p>
+          <div className="bg-gray-900/30 backdrop-blur-lg backdrop-brightness-125 p-8 h-52 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+            <h2 className="text-2xl font-extrabold text-white font-display">24h Volume</h2>
+            <p className="text-3xl font-bold text-green-500">${litecoinData.usd_24h_vol.toLocaleString()}</p>
           </div>
-          <div className="bg-gray-900 p-8 rounded-lg shadow-lg border border-gray-800 transition-transform transform hover:scale-105">
-            <h2 className="text-3xl font-extrabold text-white font-display">24h Change</h2>
-            <p className={`text-4xl font-bold ${litecoinData.usd_24h_change >= 0 ? 'text-green-500' : 'text-red-500'}`}>
+          <div className="bg-gray-900/30 backdrop-blur-lg backdrop-brightness-125 p-8 h-52 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+            <h2 className="text-2xl font-extrabold text-white font-display">24h Change</h2>
+            <p className={`text-3xl font-bold ${litecoinData.usd_24h_change >= 0 ? 'text-green-500' : 'text-red-500'}`}>
               {litecoinData.usd_24h_change.toFixed(2)}%
             </p>
           </div>
-          <div className="bg-gray-900 p-8 rounded-lg shadow-lg border border-gray-800 transition-transform transform hover:scale-105">
-            <h2 className="text-3xl font-extrabold text-white font-display">Circulating Supply</h2>
-            <p className="text-4xl font-bold text-green-500">{marketData.market_data?.circulating_supply?.toLocaleString()} LTC</p>
+          <div className="bg-gray-900/30 backdrop-blur-lg backdrop-brightness-125 p-8 h-52 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+            <h2 className="text-2xl font-extrabold text-white font-display">Circulating Supply</h2>
+            <p className="text-3xl font-bold text-green-500">{marketData.market_data?.circulating_supply?.toLocaleString()} LTC</p>
           </div>
-          <div className="bg-gray-900 p-8 rounded-lg shadow-lg border border-gray-800 transition-transform transform hover:scale-105">
-            <h2 className="text-3xl font-extrabold text-white font-display">Max Supply</h2>
-            <p className="text-4xl font-bold text-green-500">{marketData.market_data?.max_supply?.toLocaleString()} LTC</p>
+          <div className="bg-gray-900/30 backdrop-blur-lg backdrop-brightness-125 p-8 h-52 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+            <h2 className="text-2xl font-extrabold text-white font-display">Max Supply</h2>
+            <p className="text-3xl font-bold text-green-500">{marketData.market_data?.max_supply?.toLocaleString()} LTC</p>
           </div>
         </div>
       )}
 
-      <div className="mt-16">
+      <div className="relative z-10 mt-16">
         <h2 className="text-center text-4xl font-extrabold text-white font-display">Latest Transactions</h2>
-        <div className="max-w-screen-lg mx-auto mt-8 grid grid-cols-1 gap-8 px-4">
+        <div className="max-w-screen-xl mx-auto mt-8 grid grid-cols-1 gap-8 px-4">
           {latestTransactions.map((transaction, index) => (
-            <div key={index} className="bg-gray-900 p-6 rounded-lg shadow-lg text-white border border-gray-800 transition-transform transform hover:scale-105">
+            <div key={index} className="bg-gray-900/30 backdrop-blur-lg backdrop-brightness-125 p-8 h-52 rounded-lg shadow-lg text-white transition-transform transform hover:scale-105">
               <p className="font-display text-lg"><strong>Transaction Hash:</strong> {transaction.transaction_hash}</p>
               <p className="font-display text-lg"><strong>Block Height:</strong> {transaction.block_id}</p>
               <p className="font-display text-lg"><strong>Transaction Fee:</strong> {transaction.transaction_fee} LTC</p>
@@ -83,20 +101,20 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="mt-16">
+      <div className="relative z-10 mt-16">
         <h2 className="text-center text-4xl font-extrabold text-white font-display">Blockchain Info</h2>
-        <div className="max-w-screen-lg mx-auto mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
-          <div className="bg-gray-900 p-8 rounded-lg shadow-lg border border-gray-800 transition-transform transform hover:scale-105">
-            <h2 className="text-3xl font-extrabold text-white font-display">Total Blocks</h2>
-            <p className="text-4xl font-bold text-green-500">{marketData.blockchain_stats_24_hours?.blocks}</p>
+        <div className="max-w-screen-xl mx-auto mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
+          <div className="bg-gray-900/30 backdrop-blur-lg backdrop-brightness-125 p-8 h-52 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+            <h2 className="text-2xl font-extrabold text-white font-display">Total Blocks</h2>
+            <p className="text-3xl font-bold text-green-500">{marketData.blockchain_stats_24_hours?.blocks}</p>
           </div>
-          <div className="bg-gray-900 p-8 rounded-lg shadow-lg border border-gray-800 transition-transform transform hover:scale-105">
-            <h2 className="text-3xl font-extrabold text-white font-display">Total Transactions</h2>
-            <p className="text-4xl font-bold text-green-500">{marketData.blockchain_stats_24_hours?.transaction_count}</p>
+          <div className="bg-gray-900/30 backdrop-blur-lg backdrop-brightness-125 p-8 h-52 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+            <h2 className="text-2xl font-extrabold text-white font-display">Total Transactions</h2>
+            <p className="text-3xl font-bold text-green-500">{marketData.blockchain_stats_24_hours?.transaction_count}</p>
           </div>
-          <div className="bg-gray-900 p-8 rounded-lg shadow-lg border border-gray-800 transition-transform transform hover:scale-105">
-            <h2 className="text-3xl font-extrabold text-white font-display">Difficulty</h2>
-            <p className="text-4xl font-bold text-green-500">{marketData.blockchain_stats_24_hours?.difficulty}</p>
+          <div className="bg-gray-900/30 backdrop-blur-lg backdrop-brightness-125 p-8 h-52 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+            <h2 className="text-2xl font-extrabold text-white font-display">Difficulty</h2>
+            <p className="text-3xl font-bold text-green-500">{marketData.blockchain_stats_24_hours?.difficulty}</p>
           </div>
         </div>
       </div>
