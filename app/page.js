@@ -62,16 +62,8 @@ export default function Home() {
           height={80}
           className="object-contain drop-shadow-2xl"
         />
-<<<<<<< Updated upstream
-      </div>
-
-      <div className="flex justify-center relative z-10 max-w-screen-xl mx-auto mt-4">
-        <div className="space-x-4">
-          <button type="button" className="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:focus:ring-yellow-900" onClick={() => router.push('/page2')}>Wallet</button>
-=======
         <p className="mt-2 text-white text-lg font-semibold">Wallet</p>
         </button>
->>>>>>> Stashed changes
         </div>
       </div>
 
