@@ -40,25 +40,44 @@ export default function Home() {
         }}
       ></div>
 
-      <div className="relative z-10 flex justify-center items-center py-6">
-        <Image
+      <div className='text-center relative z-10 w-3/4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 px-4'>
+        <div className=''>
+
+        </div>
+        <div className="relative z-10 flex justify-center items-center py-6">
+          <Image
           src="/ralitetrans.png"
           alt="RA Lite Logo"
           width={300}
           height={300}
           className="object-contain drop-shadow-2xl"
+          />
+        </div>
+        <div className="hover:scale-105 relative z-10 flex flex-col justify-center items-center py-6">
+        <button type="button" className="" onClick={() => router.push('/page2')}>
+        <Image
+          src="/litewalletwh.png"
+          alt="Wallet Icon"
+          width={80}
+          height={80}
+          className="object-contain drop-shadow-2xl"
         />
+<<<<<<< Updated upstream
       </div>
 
       <div className="flex justify-center relative z-10 max-w-screen-xl mx-auto mt-4">
         <div className="space-x-4">
           <button type="button" className="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:focus:ring-yellow-900" onClick={() => router.push('/page2')}>Wallet</button>
+=======
+        <p className="mt-2 text-white text-lg font-semibold">Wallet</p>
+        </button>
+>>>>>>> Stashed changes
         </div>
       </div>
 
 
       {litecoinData && (
-        <div className="relative z-10 max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 px-4">
+        <div className="text-center relative z-10 w-3/4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 px-4">
           <div className="bg-gray-900/30 backdrop-blur-lg backdrop-brightness-125 p-8 h-52 rounded-lg shadow-lg transition-transform transform hover:scale-105">
             <h2 className="text-2xl font-extrabold text-white font-display">Price</h2>
             <p className="text-3xl font-bold text-green-500">${litecoinData.usd}</p>
