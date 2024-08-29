@@ -62,7 +62,7 @@ export default function Home() {
   };
 
   return (
-    <main className="relative w-full min-h-screen bg-black text-gray-100 font-sans">
+    <main className="relative w-full min-h-screen bg-[#131414] text-gray-100 font-sans">
       
 
       <div className='text-center relative z-10 w-3/4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4'>
@@ -126,16 +126,61 @@ export default function Home() {
       )}
 
       <div className='text-center relative z-10 w-3/4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 px-4'>
-        <div className='relative z-10 mt-16 col-span-3 '>
-          <div className=' mx-auto mt-8 gap-8'>
-          <div className="bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-            <h2 className="text-2xl font-bold text-white font-display">Max Supply</h2>
-            <p className="text-3xl font-bold text-green-500">{marketData.market_data?.max_supply?.toLocaleString()} LTC</p>
-          </div>
-          </div>
+        <div className='relative z-10 mt-16 col-span-3'>
+        <h2 className="text-center text-4xl font-bold text-white font-display">Blockchain Info</h2>
+        <div className="max-w-screen-xl mx-auto mt-8 grid grid-cols-2 gap-8">
+        
+                <div className="bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+                  <h2 className="text-2xl font-bold text-white font-display">Total Blocks</h2>
+                  <p className="text-3xl font-bold text-green-500">{blockchainData.blocks}</p>
+                </div>
+                <div className="bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+                  <h2 className="text-2xl font-bold text-white font-display">24h Transactions</h2>
+                  <p className="text-3xl font-bold text-green-500">{blockchainData.transactions_24h}</p>
+                </div>
+                <div className="bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+                  <h2 className="text-2xl font-bold text-white font-display">Total Transactions</h2>
+                  <p className="text-3xl font-bold text-green-500">{blockchainData.transactions}</p>
+                </div>
+                <div className="bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+                  <h2 className="text-2xl font-bold text-white font-display">Difficulty</h2>
+                  <p className="text-3xl font-bold text-green-500">{blockchainData.difficulty}</p>
+                </div>
+              
+            </div>
         </div>
+        <div className='relative z-10 mt-16 col-span-2'>
         <div className=''>
+            <div className="">
+              <h2 className="text-center text-4xl font-bold text-white font-display">Search Transaction</h2>
+              <div className='flex items-center'>
+              <div className='relative w-4/5'><input
+                type="text"
+                placeholder="Enter Transaction Hash"
+                value={transactionHash}
+                onChange={(e) => setTransactionHash(e.target.value)}
+                className="mt-8 p-4 transition-transform transform hover:scale-105 placeholder:text-center rounded-lg bg-[#87729c] text-white placeholder-gray-300"
+              /></div>
+              <button
+                onClick={handleSearch}
+                className="mt-8 px-4 py-2 bg-white-500 text-xs text-white rounded-lg hover:bg-[#292a2b]">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6"><path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" /></svg>
 
+              </button>
+            </div>
+            </div>
+
+            {transactionData && (
+            <div className="relative text-center mt-8 p-8 bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+              
+              <p className="font-display text-lg break-all"><strong>Transaction Hash:</strong> {transactionHash}</p>
+              <p className="font-display text-lg"><strong>Block Height:</strong> {transactionData.block_id}</p>
+              <p className="font-display text-lg"><strong>Transaction Fee:</strong> {transactionData.fee} LTC</p>
+              <p className="font-display text-lg"><strong>Time:</strong> {new Date(transactionData.time).toLocaleString()}</p>
+              {/* Add more details as needed */}
+            </div>
+           )}
+          </div>
         </div>
       </div>
 
@@ -143,8 +188,8 @@ export default function Home() {
         <div className=''>
           <div className="relative z-10 mt-16">
           <h2 className="text-center text-4xl font-bold text-white font-display">Latest Transactions</h2>
-            <div className="max-w-screen-xl mx-auto mt-8 grid grid-cols-1 gap-8">
-              {latestTransactions.map((transaction, index) => (
+            <div className="max-w-screen-xl mx-auto mt-8 grid grid-cols-1 gap-8">        
+           {latestTransactions.map((transaction, index) => (
               <div key={index} className="bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg shadow-lg text-white transition-transform transform hover:scale-105">
               <p className="font-display text-lg break-all"><strong>Transaction Hash:</strong> {transaction.hash}</p>
               <p className="font-display text-lg"><strong>Block Height:</strong> {transaction.block_id}</p>
