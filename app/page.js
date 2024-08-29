@@ -92,44 +92,58 @@ export default function Home() {
         </div>
       </div>
 
-      <h2 className=" text-center text-4xl font-extrabold text-white font-display">Litecoin Details</h2>
+      <h2 className=" text-center text-4xl font-bold text-white font-display">Litecoin Details</h2>
 
       {litecoinData && (
         <div className="text-center relative z-10 w-3/4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 px-4">
           <div className="bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-brightness-125 backdrop-blur-lg p-8 rounded-lg shadow-lg transition-transform transition-all transform hover:scale-105">
-            <h2 className="text-2xl font-extrabold text-white font-display">Price</h2>
+            <h2 className="text-2xl font-bold text-white font-display">Price</h2>
             <p className="text-3xl font-bold text-green-500">${litecoinData.usd}</p>
           </div>
           <div className="bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-            <h2 className="text-2xl font-extrabold text-white font-display">Market Cap</h2>
+            <h2 className="text-2xl font-bold text-white font-display">Market Cap</h2>
             <p className="text-3xl font-bold text-green-500">${litecoinData.usd_market_cap.toLocaleString()}</p>
           </div>
           <div className="bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-            <h2 className="text-2xl font-extrabold text-white font-display">24h Volume</h2>
+            <h2 className="text-2xl font-bold text-white font-display">24h Volume</h2>
             <p className="text-3xl font-bold text-green-500">${litecoinData.usd_24h_vol.toLocaleString()}</p>
           </div>
           <div className="bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-            <h2 className="text-2xl font-extrabold text-white font-display">24h Change</h2>
+            <h2 className="text-2xl font-bold text-white font-display">24h Change</h2>
             <p className={`text-3xl font-bold ${litecoinData.usd_24h_change >= 0 ? 'text-green-500' : 'text-red-500'}`}>
               {litecoinData.usd_24h_change.toFixed(2)}%
             </p>
           </div>
           <div className="bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-            <h2 className="text-2xl font-extrabold text-white font-display">Circulating Supply</h2>
+            <h2 className="text-2xl font-bold text-white font-display">Circulating Supply</h2>
             <p className="text-3xl font-bold text-green-500">{marketData.market_data?.circulating_supply?.toLocaleString()} LTC</p>
           </div>
           <div className="bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-            <h2 className="text-2xl font-extrabold text-white font-display">Max Supply</h2>
+            <h2 className="text-2xl font-bold text-white font-display">Max Supply</h2>
             <p className="text-3xl font-bold text-green-500">{marketData.market_data?.max_supply?.toLocaleString()} LTC</p>
           </div>
         </div>
       )}
 
+      <div className='text-center relative z-10 w-3/4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 px-4'>
+        <div className='relative z-10 mt-16 col-span-3 '>
+          <div className=' mx-auto mt-8 gap-8'>
+          <div className="bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+            <h2 className="text-2xl font-bold text-white font-display">Max Supply</h2>
+            <p className="text-3xl font-bold text-green-500">{marketData.market_data?.max_supply?.toLocaleString()} LTC</p>
+          </div>
+          </div>
+        </div>
+        <div className=''>
+
+        </div>
+      </div>
+
       <div className='text-center relative z-10 w-3/4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 px-4'>
         <div className=''>
           <div className="relative z-10 mt-16">
-          <h2 className="text-center text-4xl font-extrabold text-white font-display">Latest Transactions</h2>
-            <div className="max-w-screen-xl mx-auto mt-8 grid grid-cols-1 gap-8 px-4">
+          <h2 className="text-center text-4xl font-bold text-white font-display">Latest Transactions</h2>
+            <div className="max-w-screen-xl mx-auto mt-8 grid grid-cols-1 gap-8">
               {latestTransactions.map((transaction, index) => (
               <div key={index} className="bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg shadow-lg text-white transition-transform transform hover:scale-105">
               <p className="font-display text-lg break-all"><strong>Transaction Hash:</strong> {transaction.hash}</p>
@@ -144,7 +158,7 @@ export default function Home() {
         <div className=''>
           <div className=''>
             <div className="relative z-10 mt-16">
-              <h2 className="text-center text-4xl font-extrabold text-white font-display">Search Transaction</h2>
+              <h2 className="text-center text-4xl font-bold text-white font-display">Search Transaction</h2>
               <div className='relative w-full'><input
                 type="text"
                 placeholder="Enter Transaction Hash"
@@ -162,7 +176,7 @@ export default function Home() {
 
             {transactionData && (
             <div className="relative text-center w-3/4 mt-8 p-8 bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-              <h2 className="text-2xl font-extrabold text-white font-display">Transaction Details</h2>
+              <h2 className="text-2xl font-bold text-white font-display">Transaction Details</h2>
               <p className="font-display text-lg break-all"><strong>Transaction Hash:</strong> {transactionHash}</p>
               <p className="font-display text-lg"><strong>Block Height:</strong> {transactionData.block_id}</p>
               <p className="font-display text-lg"><strong>Transaction Fee:</strong> {transactionData.fee} LTC</p>
@@ -173,22 +187,22 @@ export default function Home() {
           </div>
           <div className=''>
             <div className="relative z-10 mt-16">
-            <h2 className="text-center text-4xl font-extrabold text-white font-display">Blockchain Info</h2>
+            <h2 className="text-center text-4xl font-bold text-white font-display">Blockchain Info</h2>
               <div className="w-3/4 mx-auto mt-8 grid grid-cols-1 gap-8 px-4">
                 <div className="bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-                  <h2 className="text-2xl font-extrabold text-white font-display">Total Blocks</h2>
+                  <h2 className="text-2xl font-bold text-white font-display">Total Blocks</h2>
                   <p className="text-3xl font-bold text-green-500">{blockchainData.blocks}</p>
                 </div>
                 <div className="bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-                  <h2 className="text-2xl font-extrabold text-white font-display">24h Transactions</h2>
+                  <h2 className="text-2xl font-bold text-white font-display">24h Transactions</h2>
                   <p className="text-3xl font-bold text-green-500">{blockchainData.transactions_24h}</p>
                 </div>
                 <div className="bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-                  <h2 className="text-2xl font-extrabold text-white font-display">Total Transactions</h2>
+                  <h2 className="text-2xl font-bold text-white font-display">Total Transactions</h2>
                   <p className="text-3xl font-bold text-green-500">{blockchainData.transactions}</p>
                 </div>
                 <div className="bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-                  <h2 className="text-2xl font-extrabold text-white font-display">Difficulty</h2>
+                  <h2 className="text-2xl font-bold text-white font-display">Difficulty</h2>
                   <p className="text-3xl font-bold text-green-500">{blockchainData.difficulty}</p>
                 </div>
               </div>
