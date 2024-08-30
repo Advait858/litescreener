@@ -74,36 +74,32 @@ export default function Home() {
 
   return (
     <main className="relative w-full min-h-screen bg-[#131414] text-gray-100 font-sans">
-      
-
-      <div className='text-center relative z-10 w-3/4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4'>
-        <div className=''>
-
+      {/* Navbar */}
+      <nav className="fixed top-0 left-0 w-full bg-[#645573] z-20 shadow-lg">
+        <div className="max-w mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            <div className="flex items-center">
+              <Image
+                src="/ralitetrans.png"
+                alt="RA Lite Logo"
+                width={100}
+                height={100}
+                className="object-contain"
+              />
+            </div>
+            <div className="flex space-x-4">
+              <a href="#litecoin-details" className="text-white font-light hover:text-gray-300">Litecoin Details</a>
+              <a href="#blockchain-info" className="text-white hover:text-gray-300">Blockchain Info</a>
+              <a href="#search-transaction" className="text-white hover:text-gray-300">Search Transaction</a>
+              <a href="#latest-transactions" className="text-white hover:text-gray-300">Latest Transactions</a>
+            </div>
+          </div>
         </div>
-        <div className="relative z-10 flex justify-center items-center py-6">
-          <Image
-          src="/ralitetrans.png"
-          alt="RA Lite Logo"
-          width={300}
-          height={300}
-          className="object-contain drop-shadow-2xl"
-          />
-        </div>
-        <div className="hover:scale-105 relative z-10 flex flex-col justify-center items-center py-6">
-        <button type="button" className="" onClick={() => router.push('/page2')}>
-        <Image
-          src="/litewalletwh.png"
-          alt="Wallet Icon"
-          width={80}
-          height={80}
-          className="object-contain drop-shadow-2xl"
-        />
-        <p className="mt-2 text-white text-lg font-semibold">Wallet</p>
-        </button>
-        </div>
-      </div>
+      </nav>
 
-      <h2 className=" text-center text-4xl font-bold text-white font-display">Litecoin Details</h2>
+      <div className="h-24"></div>
+
+      <h2 id="litecoin-details" className="text-center text-4xl font-bold text-white font-display">Litecoin Details</h2>
 
       {litecoinData && (
         <div className="text-center relative z-10 w-3/4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 px-4">
@@ -138,7 +134,7 @@ export default function Home() {
 
       <div className='text-center relative z-10 w-3/4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 px-4'>
         <div className='relative z-10 mt-16 col-span-3'>
-        <h2 className="text-center text-4xl font-bold text-white font-display">Blockchain Info</h2>
+        <h2  id="blockchain-info" className="text-center text-4xl font-bold text-white font-display">Blockchain Info</h2>
         <div className="max-w-screen-xl mx-auto mt-8 grid grid-cols-2 gap-8">
         
                 <div className="bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
@@ -160,7 +156,7 @@ export default function Home() {
               
             </div>
         </div>
-        <div className='relative z-10 mt-16 col-span-2'>
+        <div id="search-transaction" className='relative z-10 mt-16 col-span-2'>
         <div className=''>
             <div className="items-center">
               <h2 className="text-center text-4xl font-bold text-white font-display">Search Transaction</h2>
@@ -204,7 +200,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className='text-center relative z-10 w-3/4 mx-auto grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-8 px-4'>
+      <div id="latest-transactions" className='text-center relative z-10 w-3/4 mx-auto grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-8 px-4'>
         <div className=''>
           <div className="relative z-10 mt-16">
           <h2 className="text-center text-4xl font-bold text-white font-display">Latest Transactions</h2>
