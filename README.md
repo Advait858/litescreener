@@ -1,4 +1,4 @@
-# Litecoin Screener
+# RA Lite - Litecoin Screener
 
 ## Description
 
