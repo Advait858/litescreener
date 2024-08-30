@@ -2,3 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'MarcheSuperPro';
+    src: url('/fonts/marche-super-pro.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Diatype';
+    src: url('/fonts/diatype-medium.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+
+  .marfo {
+    font-family: 'MarcheSuperPro', sans-serif;
+  }
+
+  .dia {
+    font-family: 'Diatype', sans-serif;
+  }
