@@ -7,23 +7,10 @@ export default function Home() {
   const [litecoinData, setLitecoinData] = useState(null);
   const [latestTransactions, setLatestTransactions] = useState([]);
   const [marketData, setMarketData] = useState({});
-  const [blockchainData, setBlockchainData] = useState({});
-  const [transactionHash, setTransactionHash] = useState('');
-  const [transactionData, setTransactionData] = useState(null);
-  const [transactionError, setTransactionError] = useState(null);
-  const [showButton, setShowButton] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
     async function fetchLitecoinData() {
-      const handleScroll = () => {
-        if (window.scrollY > 150) {
-          setShowButton(true);
-        } else {
-          setShowButton(false);
-        }
-      };
-
       const priceResponse = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=litecoin&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true');
       const priceData = await priceResponse.json();
 
@@ -33,46 +20,16 @@ export default function Home() {
       const transactionsResponse = await fetch('https://api.blockchair.com/litecoin/transactions?limit=5');
       const transactionsData = await transactionsResponse.json();
 
-      const blockchainResponse = await fetch('https://api.blockchair.com/litecoin/stats');
-      const blockchainData = await blockchainResponse.json();
-
       setLitecoinData(priceData.litecoin);
       setMarketData(marketInfo);
       setLatestTransactions(transactionsData.data);
-      setBlockchainData(blockchainData.data);
-
-      window.addEventListener('scroll', handleScroll);
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-      };
     }
 
     fetchLitecoinData();
   }, []);
 
-  const handleSearch = async () => {
-    if (transactionHash) {
-      try {
-        const response = await fetch(`https://api.blockcypher.com/v1/ltc/main/txs/${transactionHash}`);
-        if (!response.ok) {
-          throw new Error('Transaction not found');
-        }
-        const data = await response.json();
-        setTransactionData(data);
-        setTransactionError(null);
-      } catch (error) {
-        console.error("Error fetching transaction data:", error);
-        setTransactionData(null);
-        setTransactionError("Failed to fetch transaction data. Please check the hash and try again.");
-      }
-    }
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
+<<<<<<< HEAD
     <main className="relative w-full min-h-screen bg-[#FFFFFF] text-[#11100F] font-sans">
       {/* Navbar */}
       <nav className="fixed top-0 left-0 w-full bg-[#645573] z-20 shadow-lg">
@@ -94,9 +51,36 @@ export default function Home() {
               <a href="#latest-transactions" className="text-[#11100F] hover:text-gray-300">Latest Transactions</a>
             </div>
           </div>
-        </div>
-      </nav>
+=======
+    <main className="relative w-full min-h-screen bg-black text-gray-100 font-sans">
+      <div
+        className="fixed inset-0 w-full h-full bg-cover bg-center z-0"
+        style={{
+          backgroundImage: "url('/bg4.jpg')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundAttachment: 'fixed',
+        }}
+      ></div>
 
+      <div className="relative z-10 flex justify-center items-center py-6">
+        <Image
+          src="/ralitetrans.png"
+          alt="RA Lite Logo"
+          width={300}
+          height={300}
+          className="object-contain drop-shadow-2xl"
+        />
+      </div>
+
+      <div className="flex justify-center relative z-10 max-w-screen-xl mx-auto mt-4">
+        <div className="space-x-4">
+          <button type="button" className="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:focus:ring-yellow-900" onClick={() => router.push('./')}>Screener</button>
+>>>>>>> 32a99714bbd42b525b6503dfd8e210e7bf725db2
+        </div>
+      </div>
+
+<<<<<<< HEAD
       <div className="h-24"></div>
 
       <h2 id="litecoin-details" className="text-center text-4xl font-bold text-[#11100F] font-display">Litecoin Details</h2>
@@ -117,21 +101,50 @@ export default function Home() {
           </div>
           <div className="bg-[#F6F1EE] border border-[#D9CFC4] p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
             <h2 className="text-2xl font-bold text-[#11100F] font-display">24h Change</h2>
+=======
+
+      {litecoinData && (
+        <div className="relative z-10 max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 px-4">
+          <div className="bg-gray-900/30 backdrop-blur-lg backdrop-brightness-125 p-8 h-52 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+            <h2 className="text-2xl font-extrabold text-white font-display">Price</h2>
+            <p className="text-3xl font-bold text-green-500">${litecoinData.usd}</p>
+          </div>
+          <div className="bg-gray-900/30 backdrop-blur-lg backdrop-brightness-125 p-8 h-52 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+            <h2 className="text-2xl font-extrabold text-white font-display">Market Cap</h2>
+            <p className="text-3xl font-bold text-green-500">${litecoinData.usd_market_cap.toLocaleString()}</p>
+          </div>
+          <div className="bg-gray-900/30 backdrop-blur-lg backdrop-brightness-125 p-8 h-52 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+            <h2 className="text-2xl font-extrabold text-white font-display">24h Volume</h2>
+            <p className="text-3xl font-bold text-green-500">${litecoinData.usd_24h_vol.toLocaleString()}</p>
+          </div>
+          <div className="bg-gray-900/30 backdrop-blur-lg backdrop-brightness-125 p-8 h-52 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+            <h2 className="text-2xl font-extrabold text-white font-display">24h Change</h2>
+>>>>>>> 32a99714bbd42b525b6503dfd8e210e7bf725db2
             <p className={`text-3xl font-bold ${litecoinData.usd_24h_change >= 0 ? 'text-green-500' : 'text-red-500'}`}>
               {litecoinData.usd_24h_change.toFixed(2)}%
             </p>
           </div>
+<<<<<<< HEAD
           <div className="bg-[#F6F1EE] border border-[#D9CFC4] p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
             <h2 className="text-2xl font-bold text-[#11100F] font-display">Circulating Supply</h2>
             <p className="text-3xl font-bold text-green-500">{marketData.market_data?.circulating_supply?.toLocaleString()} LTC</p>
           </div>
           <div className="bg-[#F6F1EE] border border-[#D9CFC4] p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
             <h2 className="text-2xl font-bold text-[#11100F] font-display">Max Supply</h2>
+=======
+          <div className="bg-gray-900/30 backdrop-blur-lg backdrop-brightness-125 p-8 h-52 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+            <h2 className="text-2xl font-extrabold text-white font-display">Circulating Supply</h2>
+            <p className="text-3xl font-bold text-green-500">{marketData.market_data?.circulating_supply?.toLocaleString()} LTC</p>
+          </div>
+          <div className="bg-gray-900/30 backdrop-blur-lg backdrop-brightness-125 p-8 h-52 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+            <h2 className="text-2xl font-extrabold text-white font-display">Max Supply</h2>
+>>>>>>> 32a99714bbd42b525b6503dfd8e210e7bf725db2
             <p className="text-3xl font-bold text-green-500">{marketData.market_data?.max_supply?.toLocaleString()} LTC</p>
           </div>
         </div>
       )}
 
+<<<<<<< HEAD
       <div className='text-center relative z-10 w-3/4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 px-4'>
         <div className='relative z-10 mt-16 col-span-3'>
         <h2  id="blockchain-info" className="text-center text-4xl font-bold text-[#11100F] font-display">Blockchain Info</h2>
@@ -228,22 +241,39 @@ export default function Home() {
                 </tbody>
               </table>
             </div>
-          </div>
+=======
+      <div className="relative z-10 mt-16">
+        <h2 className="text-center text-4xl font-extrabold text-white font-display">Latest Transactions</h2>
+        <div className="max-w-screen-xl mx-auto mt-8 grid grid-cols-1 gap-8 px-4">
+          {latestTransactions.map((transaction, index) => (
+            <div key={index} className="bg-gray-900/30 backdrop-blur-lg backdrop-brightness-125 p-8 h-52 rounded-lg shadow-lg text-white transition-transform transform hover:scale-105">
+              <p className="font-display text-lg"><strong>Transaction Hash:</strong> {transaction.transaction_hash}</p>
+              <p className="font-display text-lg"><strong>Block Height:</strong> {transaction.block_id}</p>
+              <p className="font-display text-lg"><strong>Transaction Fee:</strong> {transaction.transaction_fee} LTC</p>
+              <p className="font-display text-lg"><strong>Time:</strong> {new Date(transaction.time * 1000).toLocaleString()}</p>
+            </div>
+          ))}
         </div>
       </div>
 
-      {showButton && (
-        <button onClick={scrollToTop} className="fixed bottom-5 right-5  px-4 py-2  shadow-lg transition-all">
-          <Image
-            src="/scrollb.png"
-            alt="scroll button"
-            width={55}
-            height={55}
-            className="object-contain drop-shadow-2xl"
-          />
-        </button>
-      )}
-
+      <div className="relative z-10 mt-16">
+        <h2 className="text-center text-4xl font-extrabold text-white font-display">Blockchain Info</h2>
+        <div className="max-w-screen-xl mx-auto mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
+          <div className="bg-gray-900/30 backdrop-blur-lg backdrop-brightness-125 p-8 h-52 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+            <h2 className="text-2xl font-extrabold text-white font-display">Total Blocks</h2>
+            <p className="text-3xl font-bold text-green-500">{marketData.blockchain_stats_24_hours?.blocks}</p>
+          </div>
+          <div className="bg-gray-900/30 backdrop-blur-lg backdrop-brightness-125 p-8 h-52 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+            <h2 className="text-2xl font-extrabold text-white font-display">Total Transactions</h2>
+            <p className="text-3xl font-bold text-green-500">{marketData.blockchain_stats_24_hours?.transaction_count}</p>
+          </div>
+          <div className="bg-gray-900/30 backdrop-blur-lg backdrop-brightness-125 p-8 h-52 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+            <h2 className="text-2xl font-extrabold text-white font-display">Difficulty</h2>
+            <p className="text-3xl font-bold text-green-500">{marketData.blockchain_stats_24_hours?.difficulty}</p>
+>>>>>>> 32a99714bbd42b525b6503dfd8e210e7bf725db2
+          </div>
+        </div>
+      </div>
     </main>
   );
 }
