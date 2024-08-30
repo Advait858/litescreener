@@ -10,6 +10,7 @@ export default function Home() {
   const [blockchainData, setBlockchainData] = useState({});
   const [transactionHash, setTransactionHash] = useState('');
   const [transactionData, setTransactionData] = useState(null);
+  const [transactionError, setTransactionError] = useState(null);
   const [showButton, setShowButton] = useState(false);
   const router = useRouter();
 
@@ -51,9 +52,19 @@ export default function Home() {
 
   const handleSearch = async () => {
     if (transactionHash) {
-      const response = await fetch(`https://api.blockchair.com/litecoin/raw/transaction/${transactionHash}`);
-      const data = await response.json();
-      setTransactionData(data.data[transactionHash]);
+      try {
+        const response = await fetch(`https://api.blockcypher.com/v1/ltc/main/txs/${transactionHash}`);
+        if (!response.ok) {
+          throw new Error('Transaction not found');
+        }
+        const data = await response.json();
+        setTransactionData(data);
+        setTransactionError(null);
+      } catch (error) {
+        console.error("Error fetching transaction data:", error);
+        setTransactionData(null);
+        setTransactionError("Failed to fetch transaction data. Please check the hash and try again.");
+      }
     }
   };
 
@@ -171,92 +182,55 @@ export default function Home() {
               </div>
             </div>
 
-            {!transactionData ? (
-              <div className="relative text-center mt-9 p-8 bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-                <p className="font-display text-lg text-gray-300">Enter hash to search</p>
+            {!transactionData && !transactionError ? (
+              <div className="min-h-[205px] flex items-center justify-center relative text-center mt-9 p-8 bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+                <p className="font-display text-lg text-gray-300">Enter hash above to search</p>
+              </div>
+            ) : transactionError ? (
+              <div className="min-h-[205px] flex items-center justify-center relative text-center mt-9 p-8 bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+                <p className="font-display text-lg text-red-500">{transactionError}</p>
               </div>
             ) : (
               <div className="relative text-center mt-9 p-8 bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-                <p className="font-display text-lg break-all"><strong>Hash:</strong> {transactionHash}</p>
-                <p className="font-display text-lg"><strong>Block Height:</strong> {transactionData.block_id}</p>
-                <p className="font-display text-lg"><strong>Transaction Fee:</strong> {transactionData.fee} LTC</p>
-                <p className="font-display text-lg"><strong>Time:</strong> {new Date(transactionData.time).toLocaleString()}</p>
-                {/* Add more details as needed */}
+                
+                <p className="font-display text-lg"><strong>Block Height:</strong> {transactionData.block_height}</p>
+                <p className="font-display text-lg"><strong>Transaction Fee:</strong> {transactionData.fees / 100000000} LTC</p>
+                <p className="font-display text-lg"><strong>Time:</strong> {new Date(transactionData.received).toLocaleString()}</p>
+                <p className="font-display text-lg"><strong>Size:</strong> {transactionData.size} bytes</p>
+                <p className="font-display text-lg"><strong>Total:</strong> {transactionData.total / 100000000} LTC</p>
               </div>
             )}
           </div>
         </div>
       </div>
 
-      <div className='text-center relative z-10 w-3/4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 px-4'>
+      <div className='text-center relative z-10 w-3/4 mx-auto grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-8 px-4'>
         <div className=''>
           <div className="relative z-10 mt-16">
           <h2 className="text-center text-4xl font-bold text-white font-display">Latest Transactions</h2>
-            <div className="max-w-screen-xl mx-auto mt-8 grid grid-cols-1 gap-8">        
-           {latestTransactions.map((transaction, index) => (
-              <div key={index} className="bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg shadow-lg text-white transition-transform transform hover:scale-105">
-              <p className="font-display text-lg break-all"><strong>Transaction Hash:</strong> {transaction.hash}</p>
-              <p className="font-display text-lg"><strong>Block Height:</strong> {transaction.block_id}</p>
-              <p className="font-display text-lg"><strong>Transaction Fee:</strong> {transaction.fee} LTC</p>
-              <p className="font-display text-lg"><strong>Time:</strong> {new Date(transaction.time).toLocaleString()}</p>
-              </div>
-              ))}
-            </div>
-          </div>
-        </div>
-        <div className=''>
-          <div className=''>
-            <div className="relative z-10 mt-16">
-              <h2 className="text-center text-4xl font-bold text-white font-display">Search Transaction</h2>
-              <div className='relative w-full'>
-                <input
-                  type="text"
-                  placeholder="Enter Transaction Hash"
-                  value={transactionHash}
-                  onChange={(e) => setTransactionHash(e.target.value)}
-                  className="mt-8 p-4 transition-transform transform hover:scale-105 placeholder:text-center w-4/5 rounded-lg bg-[#87729c] text-white placeholder-gray-300"
-                />
-              </div>
-              <button
-                onClick={handleSearch}
-                className="mt-4 px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
-              >
-                Search
-              </button>
-            </div>
-
-            {transactionData && (
-            <div className="relative text-center w-3/4 mt-8 p-8 bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-              <h2 className="text-2xl font-bold text-white font-display">Transaction Details</h2>
-              <p className="font-display text-lg break-all"><strong>Transaction Hash:</strong> {transactionHash}</p>
-              <p className="font-display text-lg"><strong>Block Height:</strong> {transactionData.block_id}</p>
-              <p className="font-display text-lg"><strong>Transaction Fee:</strong> {transactionData.fee} LTC</p>
-              <p className="font-display text-lg"><strong>Time:</strong> {new Date(transactionData.time).toLocaleString()}</p>
-              {/* Add more details as needed */}
-            </div>
-           )}
-          </div>
-          <div className=''>
-            <div className="relative z-10 mt-16">
-            <h2 className="text-center text-4xl font-bold text-white font-display">Blockchain Info</h2>
-              <div className="w-3/4 mx-auto mt-8 grid grid-cols-1 gap-8 px-4">
-                <div className="bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-                  <h2 className="text-2xl font-bold text-white font-display">Total Blocks</h2>
-                  <p className="text-3xl font-bold text-green-500">{blockchainData.blocks}</p>
-                </div>
-                <div className="bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-                  <h2 className="text-2xl font-bold text-white font-display">24h Transactions</h2>
-                  <p className="text-3xl font-bold text-green-500">{blockchainData.transactions_24h}</p>
-                </div>
-                <div className="bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-                  <h2 className="text-2xl font-bold text-white font-display">Total Transactions</h2>
-                  <p className="text-3xl font-bold text-green-500">{blockchainData.transactions}</p>
-                </div>
-                <div className="bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-                  <h2 className="text-2xl font-bold text-white font-display">Difficulty</h2>
-                  <p className="text-3xl font-bold text-green-500">{blockchainData.difficulty}</p>
-                </div>
-              </div>
+            <div className=" transition-transform transform hover:scale-105 mx-auto mt-8 ">
+              <table className="mt-8 min-w-full bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 rounded-lg shadow-lg text-white transition-transform transform">
+                <thead>
+                  <tr>
+                    <th className="px-6 py-4 font-display text-lg">Transaction Hash</th>
+                    <th className="px-6 py-4 font-display text-lg">Block Height</th>
+                    <th className="px-6 py-4 font-display text-lg">Transaction Fee</th>
+                    <th className="px-6 py-4 font-display text-lg">Amount</th>
+                    <th className="px-6 py-4 font-display text-lg">Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {latestTransactions.map((transaction, index) => (
+                    <tr key={index} className="">
+                      <td className="px-6 py-4 font-display text-lg break-all">{transaction.hash.slice(0, 5)}...{transaction.hash.slice(-5)}</td>
+                      <td className="px-6 py-4 font-display text-lg">{transaction.block_id}</td>
+                      <td className="px-6 py-4 font-display text-lg">{transaction.fee} LTC</td>
+                      <td className="px-6 py-4 font-display text-lg">{transaction.amount} LTC</td>
+                      <td className="px-6 py-4 font-display text-lg">{new Date(transaction.time).toLocaleString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
