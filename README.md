@@ -36,7 +36,7 @@ Litecoin Screener is a comprehensive web application that provides real-time inf
 
 3. Install dependencies:
    ```
-   npm install
+   npm install (refer to the dependencies listed below)
    ```
 
 4. Run the development server:
