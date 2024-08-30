@@ -151,35 +151,39 @@ export default function Home() {
         </div>
         <div className='relative z-10 mt-16 col-span-2'>
         <div className=''>
-            <div className="">
+            <div className="items-center">
               <h2 className="text-center text-4xl font-bold text-white font-display">Search Transaction</h2>
-              <div className='flex items-center'>
-              <div className='relative w-4/5'><input
-                type="text"
-                placeholder="Enter Transaction Hash"
-                value={transactionHash}
-                onChange={(e) => setTransactionHash(e.target.value)}
-                className="mt-8 p-4 transition-transform transform hover:scale-105 placeholder:text-center rounded-lg bg-[#87729c] text-white placeholder-gray-300"
-              /></div>
-              <button
-                onClick={handleSearch}
-                className="mt-8 px-4 py-2 bg-white-500 text-xs text-white rounded-lg hover:bg-[#292a2b]">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6"><path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" /></svg>
+              <div className='flex items-center justify-center'>
+                <div className='relative w-full'>
+                  <input
+                    type="text"
+                    placeholder="Enter Transaction Hash"
+                    value={transactionHash}
+                    onChange={(e) => setTransactionHash(e.target.value)}
+                    className="mt-8 p-4 transition-transform transform hover:scale-105 placeholder:text-center rounded-lg bg-[#87729c] text-white placeholder-gray-300 w-full"
+                  />
+                </div>
+                <button
+                  onClick={handleSearch}
+                  className="mt-8 ml-2 px-4 py-4 bg-white-500 text-xs text-white rounded-lg hover:bg-[#292a2b]">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6"><path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" /></svg>
+                </button>
+              </div>
+            </div>
 
-              </button>
-            </div>
-            </div>
-
-            {transactionData && (
-            <div className="relative text-center mt-8 p-8 bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-              
-              <p className="font-display text-lg break-all"><strong>Transaction Hash:</strong> {transactionHash}</p>
-              <p className="font-display text-lg"><strong>Block Height:</strong> {transactionData.block_id}</p>
-              <p className="font-display text-lg"><strong>Transaction Fee:</strong> {transactionData.fee} LTC</p>
-              <p className="font-display text-lg"><strong>Time:</strong> {new Date(transactionData.time).toLocaleString()}</p>
-              {/* Add more details as needed */}
-            </div>
-           )}
+            {!transactionData ? (
+              <div className="relative text-center mt-9 p-8 bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+                <p className="font-display text-lg text-gray-300">Enter hash to search</p>
+              </div>
+            ) : (
+              <div className="relative text-center mt-9 p-8 bg-[#766387]/30 hover:bg-[#87729c]/30 backdrop-blur-lg backdrop-brightness-125 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+                <p className="font-display text-lg break-all"><strong>Hash:</strong> {transactionHash}</p>
+                <p className="font-display text-lg"><strong>Block Height:</strong> {transactionData.block_id}</p>
+                <p className="font-display text-lg"><strong>Transaction Fee:</strong> {transactionData.fee} LTC</p>
+                <p className="font-display text-lg"><strong>Time:</strong> {new Date(transactionData.time).toLocaleString()}</p>
+                {/* Add more details as needed */}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -204,13 +208,15 @@ export default function Home() {
           <div className=''>
             <div className="relative z-10 mt-16">
               <h2 className="text-center text-4xl font-bold text-white font-display">Search Transaction</h2>
-              <div className='relative w-full'><input
-                type="text"
-                placeholder="Enter Transaction Hash"
-                value={transactionHash}
-                onChange={(e) => setTransactionHash(e.target.value)}
-                className="mt-8 p-8 transition-transform transform hover:scale-105 placeholder:text-center w-3/5 p-2 mt-4 rounded-lg bg-[#87729c] text-white placeholder-gray-300"
-              /></div>
+              <div className='relative w-full'>
+                <input
+                  type="text"
+                  placeholder="Enter Transaction Hash"
+                  value={transactionHash}
+                  onChange={(e) => setTransactionHash(e.target.value)}
+                  className="mt-8 p-4 transition-transform transform hover:scale-105 placeholder:text-center w-4/5 rounded-lg bg-[#87729c] text-white placeholder-gray-300"
+                />
+              </div>
               <button
                 onClick={handleSearch}
                 className="mt-4 px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
