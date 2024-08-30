@@ -20,10 +20,10 @@ export default function Home() {
   const [exchangeRates, setExchangeRates] = useState({});
   
   const coinIcons = {
-    bitcoin: <FaBitcoin className="inline-block mr-2" />,
-    ethereum: <FaEthereum className="inline-block mr-2" />,
-    ripple: <SiRipple className="inline-block mr-2" />,
-    dogecoin: <SiDogecoin className="inline-block mr-2" />,
+    bitcoin: <FaBitcoin className=&quot;inline-block mr-2&quot; />,
+    ethereum: <FaEthereum className=&quot;inline-block mr-2&quot; />,
+    ripple: <SiRipple className=&quot;inline-block mr-2&quot; />,
+    dogecoin: <SiDogecoin className=&quot;inline-block mr-2&quot; />,
   };
 
   useEffect(() => {
@@ -93,176 +93,176 @@ export default function Home() {
       try {
         const response = await fetch(`https://api.blockcypher.com/v1/ltc/main/txs/${transactionHash}`);
         if (!response.ok) {
-          throw new Error('Transaction not found');
+          throw new Error(&apos;Transaction not found&apos;);
         }
         const data = await response.json();
         setTransactionData(data);
         setTransactionError(null);
       } catch (error) {
-        console.error("Error fetching transaction data:", error);
+        console.error(&quot;Error fetching transaction data:&quot;, error);
         setTransactionData(null);
-        setTransactionError("Failed to fetch transaction data. Please check the hash and try again.");
+        setTransactionError(&quot;Failed to fetch transaction data. Please check the hash and try again.&quot;);
       }
     }
   };
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: &quot;smooth&quot; });
   };
 
   return (
-    <main className="relative w-full min-h-screen bg-[#F6F1EE] text-gray-100 font-sans">
+    <main className=&quot;relative w-full min-h-screen bg-[#F6F1EE] text-gray-100 font-sans&quot;>
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 w-full bg-[#11100F] z-20">
-        <div className="max-w mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center">
+      <nav className=&quot;fixed top-0 left-0 w-full bg-[#11100F] z-20&quot;>
+        <div className=&quot;max-w mx-auto px-4 sm:px-6 lg:px-8&quot;>
+          <div className=&quot;flex items-center justify-between h-16&quot;>
+            <div className=&quot;flex items-center&quot;>
               <Image
-                src="/ralitetrans.png"
-                alt="RA Lite Logo"
+                src=&quot;/ralitetrans.png&quot;
+                alt=&quot;RA Lite Logo&quot;
                 width={100}
                 height={100}
-                className="object-contain"
+                className=&quot;object-contain&quot;
               />
             </div>
-            <div className="flex space-x-4 text-[#F6F1EE] dia">
-              <a href="#litecoin-details" className="hover:text-gray-300 hover:underline">Litecoin Details</a>
-              <a href="#blockchain-info" className="hover:text-gray-300 hover:underline">Blockchain Info</a>
-              <a href="#search-transaction" className="hover:text-gray-300 hover:underline">Search</a>
-              <a href="#latest-transactions" className="hover:text-gray-300 hover:underline">Latest Transactions</a>
-              <a href="#exchange-rates" className="hover:text-gray-300 hover:underline">Exchange Rates</a>
-              <a href="#price-history" className="hover:text-gray-300 hover:underline">Price History</a>
-              <a href="#latest-news" className="hover:text-gray-300 hover:underline">News</a>
-              <a href="#about-litecoin" className="hover:text-gray-300 hover:underline">About</a>
+            <div className=&quot;flex space-x-4 text-[#F6F1EE] dia&quot;>
+              <a href=&quot;#litecoin-details&quot; className=&quot;hover:text-gray-300 hover:underline&quot;>Litecoin Details</a>
+              <a href=&quot;#blockchain-info&quot; className=&quot;hover:text-gray-300 hover:underline&quot;>Blockchain Info</a>
+              <a href=&quot;#search-transaction&quot; className=&quot;hover:text-gray-300 hover:underline&quot;>Search</a>
+              <a href=&quot;#latest-transactions&quot; className=&quot;hover:text-gray-300 hover:underline&quot;>Latest Transactions</a>
+              <a href=&quot;#exchange-rates&quot; className=&quot;hover:text-gray-300 hover:underline&quot;>Exchange Rates</a>
+              <a href=&quot;#price-history&quot; className=&quot;hover:text-gray-300 hover:underline&quot;>Price History</a>
+              <a href=&quot;#latest-news&quot; className=&quot;hover:text-gray-300 hover:underline&quot;>News</a>
+              <a href=&quot;#about-litecoin&quot; className=&quot;hover:text-gray-300 hover:underline&quot;>About</a>
             </div>
           </div>
         </div>
       </nav>
 
-      <div className="h-32"></div>
+      <div className=&quot;h-32&quot;></div>
 
-      <h2 id="litecoin-details" className="text-center marfo text-5xl font-bold text-[#11100F] hover:underline font-display">Litecoin Details</h2>
+      <h2 id=&quot;litecoin-details&quot; className=&quot;text-center marfo text-5xl font-bold text-[#11100F] hover:underline font-display&quot;>Litecoin Details</h2>
 
       {litecoinData && (
-        <div className="dia text-center relative z-10 w-3/4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 px-4">
-          <div className="bg-[#FFFFFF]/30 hover:bg-[#E6E0D9]/30 backdrop-brightness-125 p-8 rounded-lg transition-transform transition-all transform hover:scale-105">
-            <h2 className="text-2xl font-bold text-[#11100F] font-display">Price</h2>
-            <p className="text-3xl font-bold text-green-600">${litecoinData.usd}</p>
+        <div className=&quot;dia text-center relative z-10 w-3/4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 px-4&quot;>
+          <div className=&quot;bg-[#FFFFFF]/30 hover:bg-[#E6E0D9]/30 backdrop-brightness-125 p-8 rounded-lg transition-transform transition-all transform hover:scale-105&quot;>
+            <h2 className=&quot;text-2xl font-bold text-[#11100F] font-display&quot;>Price</h2>
+            <p className=&quot;text-3xl font-bold text-green-600&quot;>${litecoinData.usd}</p>
           </div>
-          <div className="bg-[#FFFFFF]/30 hover:bg-[#E6E0D9]/30 backdrop-brightness-125 p-8 rounded-lg transition-transform transition-all transform hover:scale-105">
-            <h2 className="text-2xl font-bold text-[#11100F] font-display">Market Cap</h2>
-            <p className="text-3xl font-bold text-green-600">${litecoinData.usd_market_cap.toLocaleString()}</p>
+          <div className=&quot;bg-[#FFFFFF]/30 hover:bg-[#E6E0D9]/30 backdrop-brightness-125 p-8 rounded-lg transition-transform transition-all transform hover:scale-105&quot;>
+            <h2 className=&quot;text-2xl font-bold text-[#11100F] font-display&quot;>Market Cap</h2>
+            <p className=&quot;text-3xl font-bold text-green-600&quot;>${litecoinData.usd_market_cap.toLocaleString()}</p>
           </div>
-          <div className="bg-[#FFFFFF]/30 hover:bg-[#E6E0D9]/30 backdrop-brightness-125 p-8 rounded-lg transition-transform transition-all transform hover:scale-105">
-            <h2 className="text-2xl font-bold text-[#11100F] font-display">24h Volume</h2>
-            <p className="text-3xl font-bold text-green-600">${litecoinData.usd_24h_vol.toLocaleString()}</p>
+          <div className=&quot;bg-[#FFFFFF]/30 hover:bg-[#E6E0D9]/30 backdrop-brightness-125 p-8 rounded-lg transition-transform transition-all transform hover:scale-105&quot;>
+            <h2 className=&quot;text-2xl font-bold text-[#11100F] font-display&quot;>24h Volume</h2>
+            <p className=&quot;text-3xl font-bold text-green-600&quot;>${litecoinData.usd_24h_vol.toLocaleString()}</p>
           </div>
-          <div className="bg-[#FFFFFF]/30 hover:bg-[#E6E0D9]/30 backdrop-brightness-125 p-8 rounded-lg transition-transform transition-all transform hover:scale-105">
-            <h2 className="text-2xl font-bold text-[#11100F] font-display">24h Change</h2>
-            <p className={`text-3xl font-bold ${litecoinData.usd_24h_change >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+          <div className=&quot;bg-[#FFFFFF]/30 hover:bg-[#E6E0D9]/30 backdrop-brightness-125 p-8 rounded-lg transition-transform transition-all transform hover:scale-105&quot;>
+            <h2 className=&quot;text-2xl font-bold text-[#11100F] font-display&quot;>24h Change</h2>
+            <p className={`text-3xl font-bold ${litecoinData.usd_24h_change >= 0 ? &apos;text-green-600&apos; : &apos;text-red-600&apos;}`}>
               {litecoinData.usd_24h_change.toFixed(2)}%
             </p>
           </div>
-          <div className="bg-[#FFFFFF]/30 hover:bg-[#E6E0D9]/30 backdrop-brightness-125 p-8 rounded-lg transition-transform transition-all transform hover:scale-105">
-            <h2 className="text-2xl font-bold text-[#11100F] font-display">Circulating Supply</h2>
-            <p className="text-3xl font-bold text-green-600">{marketData.market_data?.circulating_supply?.toLocaleString()} LTC</p>
+          <div className=&quot;bg-[#FFFFFF]/30 hover:bg-[#E6E0D9]/30 backdrop-brightness-125 p-8 rounded-lg transition-transform transition-all transform hover:scale-105&quot;>
+            <h2 className=&quot;text-2xl font-bold text-[#11100F] font-display&quot;>Circulating Supply</h2>
+            <p className=&quot;text-3xl font-bold text-green-600&quot;>{marketData.market_data?.circulating_supply?.toLocaleString()} LTC</p>
           </div>
-          <div className="bg-[#FFFFFF]/30 hover:bg-[#E6E0D9]/30 backdrop-brightness-125 p-8 rounded-lg transition-transform transition-all transform hover:scale-105">
-            <h2 className="text-2xl font-bold text-[#11100F] font-display">Max Supply</h2>
-            <p className="text-3xl font-bold text-green-600">{marketData.market_data?.max_supply?.toLocaleString()} LTC</p>
+          <div className=&quot;bg-[#FFFFFF]/30 hover:bg-[#E6E0D9]/30 backdrop-brightness-125 p-8 rounded-lg transition-transform transition-all transform hover:scale-105&quot;>
+            <h2 className=&quot;text-2xl font-bold text-[#11100F] font-display&quot;>Max Supply</h2>
+            <p className=&quot;text-3xl font-bold text-green-600&quot;>{marketData.market_data?.max_supply?.toLocaleString()} LTC</p>
           </div>
         </div>
       )}
 
-      <div className='text-center relative z-10 w-3/4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 px-4'>
-        <div className='relative z-10 mt-16 col-span-3'>
-        <h2  id="blockchain-info" className="marfo text-center text-5xl font-bold text-[#11100F] hover:underline font-display">Blockchain Info</h2>
-        <div className="dia max-w-screen-xl mx-auto mt-8 grid grid-cols-2 gap-8">
+      <div className=&quot;text-center relative z-10 w-3/4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 px-4&quot;>
+        <div className=&quot;relative z-10 mt-16 col-span-3&quot;>
+        <h2  id=&quot;blockchain-info&quot; className=&quot;marfo text-center text-5xl font-bold text-[#11100F] hover:underline font-display&quot;>Blockchain Info</h2>
+        <div className=&quot;dia max-w-screen-xl mx-auto mt-8 grid grid-cols-2 gap-8&quot;>
         
-                <div className="bg-[#54257d]/30 hover:bg-[#672e99]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg transition-transform transform hover:scale-105">
-                  <h2 className="text-2xl font-bold text-white font-display">Total Blocks</h2>
-                  <p className="text-3xl font-bold text-green-600">{blockchainData.blocks}</p>
+                <div className=&quot;bg-[#54257d]/30 hover:bg-[#672e99]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg transition-transform transform hover:scale-105&quot;>
+                  <h2 className=&quot;text-2xl font-bold text-white font-display&quot;>Total Blocks</h2>
+                  <p className=&quot;text-3xl font-bold text-green-600&quot;>{blockchainData.blocks}</p>
                 </div>
-                <div className="bg-[#54257d]/30 hover:bg-[#672e99]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg transition-transform transform hover:scale-105">
-                  <h2 className="text-2xl font-bold text-white font-display">24h Transactions</h2>
-                  <p className="text-3xl font-bold text-green-600">{blockchainData.transactions_24h}</p>
+                <div className=&quot;bg-[#54257d]/30 hover:bg-[#672e99]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg transition-transform transform hover:scale-105&quot;>
+                  <h2 className=&quot;text-2xl font-bold text-white font-display&quot;>24h Transactions</h2>
+                  <p className=&quot;text-3xl font-bold text-green-600&quot;>{blockchainData.transactions_24h}</p>
                 </div>
-                <div className="bg-[#54257d]/30 hover:bg-[#672e99]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg transition-transform transform hover:scale-105">
-                  <h2 className="text-2xl font-bold text-white font-display">Total Transactions</h2>
-                  <p className="text-3xl font-bold text-green-600">{blockchainData.transactions}</p>
+                <div className=&quot;bg-[#54257d]/30 hover:bg-[#672e99]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg transition-transform transform hover:scale-105&quot;>
+                  <h2 className=&quot;text-2xl font-bold text-white font-display&quot;>Total Transactions</h2>
+                  <p className=&quot;text-3xl font-bold text-green-600&quot;>{blockchainData.transactions}</p>
                 </div>
-                <div className="bg-[#54257d]/30 hover:bg-[#672e99]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg transition-transform transform hover:scale-105">
-                  <h2 className="text-2xl font-bold text-white font-display">Difficulty</h2>
-                  <p className="text-3xl font-bold text-green-600">{blockchainData.difficulty}</p>
+                <div className=&quot;bg-[#54257d]/30 hover:bg-[#672e99]/30 backdrop-blur-lg backdrop-brightness-125 p-8 rounded-lg transition-transform transform hover:scale-105&quot;>
+                  <h2 className=&quot;text-2xl font-bold text-white font-display&quot;>Difficulty</h2>
+                  <p className=&quot;text-3xl font-bold text-green-600&quot;>{blockchainData.difficulty}</p>
                 </div>
               
             </div>
         </div>
-        <div id="search-transaction" className='relative z-10 mt-16 col-span-2'>
-        <div className=''>
-            <div className="items-center">
-              <h2 className="marfo text-center text-5xl font-bold text-[#11100F] hover:underline font-display">Search Transaction</h2>
-              <div className='dia flex items-center justify-center'>
-                <div className='relative w-full'>
+        <div id=&quot;search-transaction&quot; className=&quot;relative z-10 mt-16 col-span-2&quot;>
+        <div className=&quot;&quot;>
+            <div className=&quot;items-center&quot;>
+              <h2 className=&quot;marfo text-center text-5xl font-bold text-[#11100F] hover:underline font-display&quot;>Search Transaction</h2>
+              <div className=&quot;dia flex items-center justify-center&quot;>
+                <div className=&quot;relative w-full&quot;>
                   <input
-                    type="text"
-                    placeholder="Enter Transaction Hash"
+                    type=&quot;text&quot;
+                    placeholder=&quot;Enter Transaction Hash&quot;
                     value={transactionHash}
                     onChange={(e) => setTransactionHash(e.target.value)}
-                    className="mt-8 p-4 transition-transform transform hover:scale-105 placeholder:text-center rounded-lg bg-[#54257d]/30 hover:bg-[#672e99]/30 text-white placeholder-white w-full"
+                    className=&quot;mt-8 p-4 transition-transform transform hover:scale-105 placeholder:text-center rounded-lg bg-[#54257d]/30 hover:bg-[#672e99]/30 text-white placeholder-white w-full&quot;
                   />
                 </div>
                 <button
                   onClick={handleSearch}
-                  className="mt-8 ml-2 px-4 py-4 rounded-lg bg-[#11100F] transition-transform transform hover:scale-105">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="size-6"><path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" /></svg>
+                  className=&quot;mt-8 ml-2 px-4 py-4 rounded-lg bg-[#11100F] transition-transform transform hover:scale-105&quot;>
+                  <svg xmlns=&quot;http://www.w3.org/2000/svg&quot; fill=&quot;none&quot; viewBox=&quot;0 0 24 24&quot; strokeWidth={1.5} stroke=&quot;white&quot; className=&quot;size-6&quot;><path strokeLinecap=&quot;round&quot; strokeLinejoin=&quot;round&quot; d=&quot;m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z&quot; /></svg>
                 </button>
               </div>
             </div>
 
             {!transactionData && !transactionError ? (
-              <div className="dia min-h-[205px] flex items-center justify-center relative text-center mt-9 p-8 bg-[#54257d]/30 hover:bg-[#672e99]/30 backdrop-blur-lg backdrop-brightness-125 rounded-lg transition-transform transform hover:scale-105">
-                <p className="font-display text-lg text-white">Enter hash above to search</p>
+              <div className=&quot;dia min-h-[205px] flex items-center justify-center relative text-center mt-9 p-8 bg-[#54257d]/30 hover:bg-[#672e99]/30 backdrop-blur-lg backdrop-brightness-125 rounded-lg transition-transform transform hover:scale-105&quot;>
+                <p className=&quot;font-display text-lg text-white&quot;>Enter hash above to search</p>
               </div>
             ) : transactionError ? (
-              <div className="min-h-[205px] flex items-center justify-center relative text-center mt-9 p-8 bg-[#54257d]/30 hover:bg-[#672e99]/30 backdrop-blur-lg backdrop-brightness-125 rounded-lg transition-transform transform hover:scale-105">
-                <p className="dia font-display text-lg text-red-500">{transactionError}</p>
+              <div className=&quot;min-h-[205px] flex items-center justify-center relative text-center mt-9 p-8 bg-[#54257d]/30 hover:bg-[#672e99]/30 backdrop-blur-lg backdrop-brightness-125 rounded-lg transition-transform transform hover:scale-105&quot;>
+                <p className=&quot;dia font-display text-lg text-red-500&quot;>{transactionError}</p>
               </div>
             ) : (
-              <div className="dia relative text-center mt-9 p-8 bg-[#54257d]/30 hover:bg-[#672e99]/30 backdrop-blur-lg backdrop-brightness-125 rounded-lg transition-transform transform hover:scale-105">
+              <div className=&quot;dia relative text-center mt-9 p-8 bg-[#54257d]/30 hover:bg-[#672e99]/30 backdrop-blur-lg backdrop-brightness-125 rounded-lg transition-transform transform hover:scale-105&quot;>
                 
-                <p className="font-display text-lg"><strong>Block Height:</strong> {transactionData.block_height}</p>
-                <p className="font-display text-lg"><strong>Transaction Fee:</strong> {transactionData.fees / 100000000} LTC</p>
-                <p className="font-display text-lg"><strong>Time:</strong> {new Date(transactionData.received).toLocaleString()}</p>
-                <p className="font-display text-lg"><strong>Size:</strong> {transactionData.size} bytes</p>
-                <p className="font-display text-lg"><strong>Total:</strong> {transactionData.total / 100000000} LTC</p>
+                <p className=&quot;font-display text-lg&quot;><strong>Block Height:</strong> {transactionData.block_height}</p>
+                <p className=&quot;font-display text-lg&quot;><strong>Transaction Fee:</strong> {transactionData.fees / 100000000} LTC</p>
+                <p className=&quot;font-display text-lg&quot;><strong>Time:</strong> {new Date(transactionData.received).toLocaleString()}</p>
+                <p className=&quot;font-display text-lg&quot;><strong>Size:</strong> {transactionData.size} bytes</p>
+                <p className=&quot;font-display text-lg&quot;><strong>Total:</strong> {transactionData.total / 100000000} LTC</p>
               </div>
             )}
           </div>
         </div>
       </div>
 
-      <div className='text-center relative z-10 w-3/4 mx-auto grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-8 px-4'>
-        <div className=''>
-          <div className="relative z-10 mt-16">
-          <h2 className="marfo text-center text-5xl font-bold text-[#11100F] hover:underline font-display">Latest Transactions</h2>
-            <div id="latest-transactions" className="dia transition-transform transform hover:scale-105 mx-auto mt-8 ">
-              <table className="mt-8 min-w-full bg-[#FFFFFF]/30 hover:bg-[#E6E0D9]/30 backdrop-blur-lg backdrop-brightness-125 rounded-lg text-[#11100F] transition-transform transform">
+      <div className=&quot;text-center relative z-10 w-3/4 mx-auto grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-8 px-4&quot;>
+        <div className=&quot;&quot;>
+          <div className=&quot;relative z-10 mt-16&quot;>
+          <h2 className=&quot;marfo text-center text-5xl font-bold text-[#11100F] hover:underline font-display&quot;>Latest Transactions</h2>
+            <div id=&quot;latest-transactions&quot; className=&quot;dia transition-transform transform hover:scale-105 mx-auto mt-8 &quot;>
+              <table className=&quot;mt-8 min-w-full bg-[#FFFFFF]/30 hover:bg-[#E6E0D9]/30 backdrop-blur-lg backdrop-brightness-125 rounded-lg text-[#11100F] transition-transform transform&quot;>
                 <thead>
                   <tr>
-                    <th className="px-6 py-4 font-display text-lg">Transaction Hash</th>
-                    <th className="px-6 py-4 font-display text-lg">Block Height</th>
-                    <th className="px-6 py-4 font-display text-lg">Transaction Fee</th>
-                    <th className="px-6 py-4 font-display text-lg">Time</th>
+                    <th className=&quot;px-6 py-4 font-display text-lg&quot;>Transaction Hash</th>
+                    <th className=&quot;px-6 py-4 font-display text-lg&quot;>Block Height</th>
+                    <th className=&quot;px-6 py-4 font-display text-lg&quot;>Transaction Fee</th>
+                    <th className=&quot;px-6 py-4 font-display text-lg&quot;>Time</th>
                   </tr>
                 </thead>
                 <tbody>
                   {latestTransactions.map((transaction, index) => (
-                    <tr key={index} className="">
-                      <td className="px-6 py-4 font-display text-lg break-all">{transaction.hash.slice(0, 5)}...{transaction.hash.slice(-5)}</td>
-                      <td className="px-6 py-4 font-display text-lg">{transaction.block_id}</td>
-                      <td className="px-6 py-4 font-display text-lg">{transaction.fee} LTC</td>
-                      <td className="px-6 py-4 font-display text-lg">{new Date(transaction.time).toLocaleString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</td>
+                    <tr key={index} className=&quot;&quot;>
+                      <td className=&quot;px-6 py-4 font-display text-lg break-all&quot;>{transaction.hash.slice(0, 5)}...{transaction.hash.slice(-5)}</td>
+                      <td className=&quot;px-6 py-4 font-display text-lg&quot;>{transaction.block_id}</td>
+                      <td className=&quot;px-6 py-4 font-display text-lg&quot;>{transaction.fee} LTC</td>
+                      <td className=&quot;px-6 py-4 font-display text-lg&quot;>{new Date(transaction.time).toLocaleString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -273,36 +273,36 @@ export default function Home() {
       </div>
 
       {/* Updated Exchange Rates and Latest News section */}
-      <div className='text-center relative z-10 w-3/4 mx-auto mt-16 px-4'>
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
-          <div id="exchange-rates" className="col-span-2">
-            <h2 className="marfo text-center text-5xl font-bold text-[#11100F] hover:underline font-display mb-8">Exchange Rates</h2>
-            <div className="dia grid grid-cols-1 gap-4">
+      <div className=&quot;text-center relative z-10 w-3/4 mx-auto mt-16 px-4&quot;>
+        <div className=&quot;grid grid-cols-1 md:grid-cols-5 gap-8&quot;>
+          <div id=&quot;exchange-rates&quot; className=&quot;col-span-2&quot;>
+            <h2 className=&quot;marfo text-center text-5xl font-bold text-[#11100F] hover:underline font-display mb-8&quot;>Exchange Rates</h2>
+            <div className=&quot;dia grid grid-cols-1 gap-4&quot;>
               {Object.entries(exchangeRates).map(([coin, rate]) => (
-                <div key={coin} className="mb-2 bg-[#54257d]/30 hover:bg-[#672e99]/30 backdrop-blur-lg backdrop-brightness-125 p-4 rounded-lg transition-transform transform hover:scale-105">
-                  <h3 className="text-xl font-bold text-white font-display mb-2">
+                <div key={coin} className=&quot;mb-2 bg-[#54257d]/30 hover:bg-[#672e99]/30 backdrop-blur-lg backdrop-brightness-125 p-4 rounded-lg transition-transform transform hover:scale-105&quot;>
+                  <h3 className=&quot;text-xl font-bold text-white font-display mb-2&quot;>
                     {coinIcons[coin]}
                     {coin.charAt(0).toUpperCase() + coin.slice(1)}
                   </h3>
-                  <p className="text-lg font-bold text-green-600">1 LTC = {rate.toFixed(8)} {coin.toUpperCase()}</p>
+                  <p className=&quot;text-lg font-bold text-green-600&quot;>1 LTC = {rate.toFixed(8)} {coin.toUpperCase()}</p>
                 </div>
               ))}
             </div>
           </div>
           
-          <div id="latest-news" className="col-span-3">
-            <h2 className="marfo text-center text-5xl font-bold text-[#11100F] hover:underline font-display mb-8">Latest News</h2>
-            <div className="space-y-4">
+          <div id=&quot;latest-news&quot; className=&quot;col-span-3&quot;>
+            <h2 className=&quot;marfo text-center text-5xl font-bold text-[#11100F] hover:underline font-display mb-8&quot;>Latest News</h2>
+            <div className=&quot;space-y-4&quot;>
               {newsArticles.length > 0 ? (
                 newsArticles.map((article, index) => (
-                  <div key={index} className="dia bg-[#54257d]/30 hover:bg-[#672e99]/30 p-6 rounded-lg transition-transform transform hover:scale-105 shadow-lg">
-                    <h3 className="text-xl font-bold text-white font-display mb-2">{article.title}</h3>
-                    <p className="text-white mb-4">{article.description}</p>
-                    <a href={article.url} target="_blank" rel="noopener noreferrer" className="text-black hover:underline">Read more</a>
+                  <div key={index} className=&quot;dia bg-[#54257d]/30 hover:bg-[#672e99]/30 p-6 rounded-lg transition-transform transform hover:scale-105 shadow-lg&quot;>
+                    <h3 className=&quot;text-xl font-bold text-white font-display mb-2&quot;>{article.title}</h3>
+                    <p className=&quot;text-white mb-4&quot;>{article.description}</p>
+                    <a href={article.url} target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; className=&quot;text-black hover:underline&quot;>Read more</a>
                   </div>
                 ))
               ) : (
-                <p className="text-gray-400">No news available</p>
+                <p className=&quot;text-gray-400&quot;>No news available</p>
               )}
             </div>
           </div>
@@ -311,83 +311,83 @@ export default function Home() {
 
       {/* Updated Price History section */}
       {/* Updated Price History section */}
-      <div id="price-history" className='text-center relative z-10 w-3/4 mx-auto mt-24 px-4'>
-        <h2 className="marfo text-center text-5xl font-bold text-[#11100F] hover:underline font-display mb-12">30-Day Price History</h2>
-        <div className="dia bg-white p-4 rounded-lg transition-transform transition-all transform hover:scale-105 shadow-lg">
-          <ResponsiveContainer width="100%" height={400}>
+      <div id=&quot;price-history&quot; className=&quot;text-center relative z-10 w-3/4 mx-auto mt-24 px-4&quot;>
+        <h2 className=&quot;marfo text-center text-5xl font-bold text-[#11100F] hover:underline font-display mb-12&quot;>30-Day Price History</h2>
+        <div className=&quot;dia bg-white p-4 rounded-lg transition-transform transition-all transform hover:scale-105 shadow-lg&quot;>
+          <ResponsiveContainer width=&quot;100%&quot; height={400}>
             <LineChart data={priceHistory} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#ccc" opacity={0.5} />
+              <CartesianGrid strokeDasharray=&quot;3 3&quot; stroke=&quot;#ccc&quot; opacity={0.5} />
               <XAxis 
-                dataKey="date" 
-                stroke="#333"
-                tick={{ fill: '#333', fontSize: 12 }}
+                dataKey=&quot;date&quot; 
+                stroke=&quot;#333&quot;
+                tick={{ fill: &quot;#333&quot;, fontSize: 12 }}
                 tickFormatter={(value) => {
                   const date = new Date(value);
                   const day = date.getDate();
-                  return day % 5 === 0 ? value : '';
+                  return day % 5 === 0 ? value : &quot;&quot;;
                 }}
                 interval={0}
                 angle={-45}
-                textAnchor="end"
+                textAnchor=&quot;end&quot;
                 height={60}
               />
               <YAxis 
-                stroke="#333"
-                tick={{ fill: '#333' }}
-                tickFormatter={(value) => `$${value}`}
+                stroke=&quot;#333&quot;
+                tick={{ fill: &quot;#333&quot; }}
+                tickFormatter={(value) => &quot;$&quot; + value}
               />
               <Tooltip 
-                contentStyle={{ backgroundColor: '#fff', border: '1px solid #ccc', color: '#333' }}
-                itemStyle={{ color: '#333' }}
-                formatter={(value) => [`$${value}`, 'Price']}
+                contentStyle={{ backgroundColor: &quot;#fff&quot;, border: &quot;1px solid #ccc&quot;, color: &quot;#333&quot; }}
+                itemStyle={{ color: &quot;#333&quot; }}
+                formatter={(value) => [&quot;$&quot; + value, &quot;Price&quot;]}
                 labelFormatter={(label) => `Date: ${label}`}
               />
-              <Line type="monotone" dataKey="price" stroke="#766387" strokeWidth={2} dot={false} />
+              <Line type=&quot;monotone&quot; dataKey=&quot;price&quot; stroke=&quot;#766387&quot; strokeWidth={2} dot={false} />
             </LineChart>
           </ResponsiveContainer>
         </div>
       </div>
 
 
-      <div id="about-litecoin" className='text-center relative z-10 w-3/4 mx-auto mt-16 px-4 mb-16'>
-        <h2 className="marfo text-center text-5xl font-bold text-[#11100F] hover:underline font-display mb-8">About Litecoin</h2>
-        <div className="dia bg-[#54257d]/30 hover:bg-[#672e99]/30 p-8 rounded-lg transition-transform transform hover:scale-105 shadow-lg">
-          <p className="text-white mb-4">
-            Litecoin (LTC), often referred to as the "silver to Bitcoin's gold," is a decentralized cryptocurrency created by Charlie Lee in 2011. It was one of the earliest cryptocurrencies to fork from Bitcoin's blockchain, aiming to provide a faster and more efficient payment network. Designed as a "lite" version of Bitcoin, Litecoin offers faster transaction speeds and lower fees, making it more suitable for everyday transactions.
+      <div id=&quot;about-litecoin&quot; className=&quot;text-center relative z-10 w-3/4 mx-auto mt-16 px-4 mb-16&quot;>
+        <h2 className=&quot;marfo text-center text-5xl font-bold text-[#11100F] hover:underline font-display mb-8&quot;>About Litecoin</h2>
+        <div className=&quot;dia bg-[#54257d]/30 hover:bg-[#672e99]/30 p-8 rounded-lg transition-transform transform hover:scale-105 shadow-lg&quot;>
+          <p className=&quot;text-white mb-4&quot;>
+            Litecoin (LTC), often referred to as the &quot;silver to Bitcoin&apos;s gold,&quot; is a decentralized cryptocurrency created by Charlie Lee in 2011. It was one of the earliest cryptocurrencies to fork from Bitcoin&apos;s blockchain, aiming to provide a faster and more efficient payment network. Designed as a &quot;lite&quot; version of Bitcoin, Litecoin offers faster transaction speeds and lower fees, making it more suitable for everyday transactions.
           </p>
           
-          <p className="text-white mb-4">
-            One of Litecoin's key features is its use of the Scrypt algorithm, a memory-hard mining algorithm that makes it more resistant to ASIC mining and potentially more accessible to smaller miners. Litecoin has a block generation time of 2.5 minutes, compared to Bitcoin's 10 minutes, allowing for quicker transaction confirmations. It also has a larger maximum supply of 84 million LTC, compared to Bitcoin's 21 million, and supports technologies like SegWit and the Lightning Network for even faster and cheaper transactions.
+          <p className=&quot;text-white mb-4&quot;>
+            One of Litecoin&apos;s key features is its use of the Scrypt algorithm, a memory-hard mining algorithm that makes it more resistant to ASIC mining and potentially more accessible to smaller miners. Litecoin has a block generation time of 2.5 minutes, compared to Bitcoin&apos;s 10 minutes, allowing for quicker transaction confirmations. It also has a larger maximum supply of 84 million LTC, compared to Bitcoin&apos;s 21 million, and supports technologies like SegWit and the Lightning Network for even faster and cheaper transactions.
           </p>
           
-          <p className="text-white mb-4">
+          <p className=&quot;text-white mb-4&quot;>
             The benefits of Litecoin include faster transaction confirmations, lower fees, and more accessible mining for individuals. With a proven track record and stability since 2011, Litecoin has gained wide acceptance among exchanges and merchants. Its strong community and growing adoption by merchants make it an attractive option for investors and users alike.
           </p>
           
-          <p className="text-white mb-4">
+          <p className=&quot;text-white mb-4&quot;>
             Compared to other cryptocurrencies, Litecoin occupies a unique position. While it shares similarities with Bitcoin as a payment system, it offers faster transactions and lower fees. Unlike Ethereum, which focuses on smart contracts and decentralized applications, Litecoin primarily serves as a digital currency. In contrast to newer chains, Litecoin has a longer history and proven reliability, though it may lack some of the advanced features of these newer platforms.
           </p>
 
-          <p className="text-white mb-4">
-            For investors, Litecoin presents both opportunities and risks. Its faster transaction speed and lower fees make it a potential alternative for smaller transactions and everyday payments. The cryptocurrency market's volatility can lead to significant price fluctuations, which can be seen as both a risk and an opportunity. As the market continues to evolve, Litecoin could see further growth and adoption, potentially leading to increased value.
+          <p className=&quot;text-white mb-4&quot;>
+            For investors, Litecoin presents both opportunities and risks. Its faster transaction speed and lower fees make it a potential alternative for smaller transactions and everyday payments. The cryptocurrency market&apos;s volatility can lead to significant price fluctuations, which can be seen as both a risk and an opportunity. As the market continues to evolve, Litecoin could see further growth and adoption, potentially leading to increased value.
           </p>
 
-          <p className="text-white mb-4">
-            However, it's important to note that investing in cryptocurrencies carries significant risks. These include market volatility, regulatory risks as governments worldwide closely monitor cryptocurrencies, and technological risks as the underlying technology continues to evolve. Potential investors should conduct thorough research and consider their own financial goals and risk tolerance before making any investment decisions.
+          <p className=&quot;text-white mb-4&quot;>
+            However, it&apos;s important to note that investing in cryptocurrencies carries significant risks. These include market volatility, regulatory risks as governments worldwide closely monitor cryptocurrencies, and technological risks as the underlying technology continues to evolve. Potential investors should conduct thorough research and consider their own financial goals and risk tolerance before making any investment decisions.
           </p>
         </div>
       </div>
 
-      <div className='h-16'></div>
+      <div className=&quot;h-16&quot;></div>
 
       {showButton && (
-        <button onClick={scrollToTop} className="fixed bottom-5 right-5 px-4 py-2 transition-all">
+        <button onClick={scrollToTop} className=&quot;fixed bottom-5 right-5 px-4 py-2 transition-all&quot;>
           <Image
-            src="/scrollb.png"
-            alt="scroll button"
+            src=&quot;/scrollb.png&quot;
+            alt=&quot;scroll button&quot;
             width={55}
             height={55}
-            className="object-contain drop-shadow-2xl"
+            className=&quot;object-contain drop-shadow-2xl&quot;
           />
         </button>
       )}
