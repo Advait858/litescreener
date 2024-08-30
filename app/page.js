@@ -3,6 +3,28 @@ import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+<<<<<<< Updated upstream
+=======
+
+const API_ENDPOINTS = {
+  PRICE: 'https://api.coingecko.com/api/v3/simple/price?ids=litecoin&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true',
+  MARKET: 'https://api.coingecko.com/api/v3/coins/litecoin',
+  TRANSACTIONS: 'https://api.blockchair.com/litecoin/transactions?limit=5',
+  BLOCKCHAIN: 'https://api.blockchair.com/litecoin/stats',
+  TRANSACTION: 'https://api.blockchair.com/litecoin/raw/transaction/',
+  HISTORY: 'https://api.coingecko.com/api/v3/coins/litecoin/market_chart?vs_currency=usd&days=30',
+  NEWS: 'https://newsapi.org/v2/everything?q=litecoin&sortBy=publishedAt&apiKey=YOUR_NEWS_API_KEY'  // Replace with your API key
+};
+
+const DataCard = ({ title, value, isPrice = false, isPercentage = false }) => (
+  <div className="bg-gradient-to-br from-[#4a4a5e] to-[#2a2a3a] hover:from-[#5a5a6e] hover:to-[#3a3a4a] p-6 rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 border border-[#6a6a7e] hover:border-[#8a8a9e]">
+    <h2 className="text-xl font-bold text-gray-300 mb-2">{title}</h2>
+    <p className={`text-2xl font-bold ${isPrice ? 'text-green-400' : isPercentage ? (parseFloat(value) >= 0 ? 'text-green-400' : 'text-red-400') : 'text-blue-400'}`}>
+      {isPrice ? '$' : ''}{isPercentage ? `${parseFloat(value).toFixed(2)}%` : isNaN(value) ? value : parseFloat(value).toLocaleString()}
+    </p>
+  </div>
+);
+>>>>>>> Stashed changes
 
 // API endpoints
 const API_ENDPOINTS = {
@@ -38,7 +60,10 @@ export default function Home() {
   const [showButton, setShowButton] = useState(false);
   const router = useRouter();
 
+<<<<<<< Updated upstream
   // Function to fetch data from API
+=======
+>>>>>>> Stashed changes
   const fetchData = useCallback(async (url) => {
     try {
       const response = await fetch(url);
@@ -46,11 +71,18 @@ export default function Home() {
       return response.json();
     } catch (error) {
       console.error('Error fetching data:', error);
+<<<<<<< Updated upstream
       return null;
     }
   }, []);
 
   // Fetch Litecoin data on component mount
+=======
+      return null;  // Return null on error to prevent crashes
+    }
+  }, []);
+
+>>>>>>> Stashed changes
   useEffect(() => {
     const handleScroll = () => setShowButton(window.scrollY > 150);
 
@@ -87,7 +119,10 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [fetchData]);
 
+<<<<<<< Updated upstream
   // Handle transaction search
+=======
+>>>>>>> Stashed changes
   const handleSearch = useCallback(async () => {
     if (transactionHash) {
       try {
@@ -99,6 +134,7 @@ export default function Home() {
     }
   }, [transactionHash, fetchData]);
 
+<<<<<<< Updated upstream
   // Scroll to top button handler
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -227,6 +263,14 @@ export default function Home() {
       <div className="absolute inset-0 bg-[url('/blockchain-background.png')] opacity-20 bg-cover bg-center"></div>
       <div className='relative z-10 container mx-auto px-4 py-8'>
         {/* Header Section */}
+=======
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  return (
+    <main className="relative w-full min-h-screen bg-gradient-to-b from-[#1a1a2e] to-[#16213e] text-gray-100 font-sans">
+      <div className="absolute inset-0 bg-[url('/blockchain-background.png')] opacity-10 bg-cover bg-center"></div>
+      <div className='relative z-10 container mx-auto px-4 py-8'>
+>>>>>>> Stashed changes
         <div className='flex flex-col md:flex-row justify-between items-center mb-12'>
           <Image
             src="/ralitetrans.png"
@@ -237,7 +281,11 @@ export default function Home() {
           />
           <button 
             onClick={() => router.push('/page2')}
+<<<<<<< Updated upstream
             className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300"
+=======
+            className="flex items-center space-x-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition-colors duration-300"
+>>>>>>> Stashed changes
           >
             <Image
               src="/litewalletwh.png"
@@ -250,6 +298,7 @@ export default function Home() {
           </button>
         </div>
 
+<<<<<<< Updated upstream
         {/* Dashboard Title */}
         <h1 className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12 glow">Litecoin Dashboard</h1>
 
@@ -274,6 +323,122 @@ export default function Home() {
         <button 
           onClick={scrollToTop} 
           className="fixed bottom-5 right-5 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+=======
+        <h1 className="text-4xl md:text-5xl font-bold text-center text-white mb-12 glow">Litecoin Dashboard</h1>
+
+        {litecoinData && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            <DataCard title="Price" value={litecoinData.usd} isPrice />
+            <DataCard title="Market Cap" value={litecoinData.usd_market_cap} isPrice />
+            <DataCard title="24h Volume" value={litecoinData.usd_24h_vol} isPrice />
+            <DataCard title="24h Change" value={litecoinData.usd_24h_change} isPercentage />
+            <DataCard title="Circulating Supply" value={marketData.market_data?.circulating_supply} />
+            <DataCard title="Max Supply" value={marketData.market_data?.max_supply} />
+          </div>
+        )}
+
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12'>
+          <div>
+            <h2 className="text-3xl font-bold text-white mb-6">Blockchain Info</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <DataCard title="Total Blocks" value={blockchainData.blocks} />
+              <DataCard title="24h Transactions" value={blockchainData.transactions_24h} />
+              <DataCard title="Total Transactions" value={blockchainData.transactions} />
+              <DataCard title="Difficulty" value={blockchainData.difficulty} />
+            </div>
+          </div>
+          <div>
+            <h2 className="text-3xl font-bold text-white mb-6">Search Transaction</h2>
+            <div className='flex items-center space-x-2 mb-4'>
+              <input
+                type="text"
+                placeholder="Enter Transaction Hash"
+                value={transactionHash}
+                onChange={(e) => setTransactionHash(e.target.value)}
+                className="flex-grow p-3 rounded-lg bg-[#2a2a3a] text-white placeholder-gray-400 border border-[#4a4a5e] focus:outline-none focus:border-blue-500 transition-colors"
+              />
+              <button
+                onClick={handleSearch}
+                className="p-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                </svg>
+              </button>
+            </div>
+            {transactionData ? (
+              <div className="bg-gradient-to-br from-[#2a2a3a] to-[#3a3a4a] p-6 rounded-xl shadow-lg border border-[#4a4a5e]">
+                <h3 className="text-xl font-bold text-white mb-4">Transaction Details</h3>
+                <p className="text-gray-300 mb-2"><strong>Hash:</strong> <span className="text-blue-400 break-all">{transactionHash}</span></p>
+                <p className="text-gray-300 mb-2"><strong>Block Height:</strong> <span className="text-blue-400">{transactionData.block_id}</span></p>
+                <p className="text-gray-300 mb-2"><strong>Transaction Fee:</strong> <span className="text-blue-400">{transactionData.fee} LTC</span></p>
+                <p className="text-gray-300"><strong>Time:</strong> <span className="text-blue-400">{new Date(transactionData.time).toLocaleString()}</span></p>
+              </div>
+            ) : (
+              <div className="bg-gradient-to-br from-[#2a2a3a] to-[#3a3a4a] p-6 rounded-xl shadow-lg border border-[#4a4a5e] text-center">
+                <p className="text-gray-400">Enter a transaction hash to see details</p>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className='mb-12'>
+          <h2 className="text-3xl font-bold text-white mb-6">7-Day Price History</h2>
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart data={priceHistory}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#444" />
+              <XAxis dataKey="date" stroke="#888" />
+              <YAxis stroke="#888" />
+              <Tooltip 
+                contentStyle={{ backgroundColor: '#2a2a3a', border: 'none' }}
+                itemStyle={{ color: '#fff' }}
+              />
+              <Line type="monotone" dataKey="price" stroke="#8884d8" strokeWidth={2} dot={false} />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+
+        <div className='mb-12'>
+          <h2 className="text-3xl font-bold text-white mb-6">Latest News</h2>
+          <div className="space-y-4">
+            {newsArticles.length > 0 ? (
+              newsArticles.map((article, index) => (
+                <div key={index} className="bg-gradient-to-br from-[#2a2a3a] to-[#3a3a4a] p-6 rounded-xl shadow-lg border border-[#4a4a5e] transition-all duration-300 hover:scale-[1.02]">
+                  <h3 className="text-xl font-bold text-white mb-2">{article.title}</h3>
+                  <p className="text-gray-300 mb-4">{article.description}</p>
+                  <a href={article.url} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Read more</a>
+                </div>
+              ))
+            ) : (
+              <p className="text-gray-400">No news available</p>
+            )}
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-3xl font-bold text-white mb-6">Latest Transactions</h2>
+          <div className="space-y-4">
+            {latestTransactions.length > 0 ? (
+              latestTransactions.map((transaction, index) => (
+                <div key={index} className="bg-gradient-to-br from-[#2a2a3a] to-[#3a3a4a] p-6 rounded-xl shadow-lg border border-[#4a4a5e] transition-all duration-300 hover:scale-[1.02]">
+                  <p className="text-gray-300 mb-2"><strong>Transaction Hash:</strong> <span className="text-blue-400 break-all">{transaction.hash}</span></p>
+                  <p className="text-gray-300 mb-2"><strong>Block Height:</strong> <span className="text-blue-400">{transaction.block_id}</span></p>
+                  <p className="text-gray-300 mb-2"><strong>Transaction Fee:</strong> <span className="text-blue-400">{transaction.fee} LTC</span></p>
+                  <p className="text-gray-300"><strong>Time:</strong> <span className="text-blue-400">{new Date(transaction.time).toLocaleString()}</span></p>
+                </div>
+              ))
+            ) : (
+              <p className="text-gray-400">No transactions available</p>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {showButton && (
+        <button 
+          onClick={scrollToTop} 
+          className="fixed bottom-5 right-5 bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+>>>>>>> Stashed changes
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
@@ -281,6 +446,7 @@ export default function Home() {
         </button>
       )}
 
+<<<<<<< Updated upstream
       {/* Custom Styles */}
       <style jsx global>{`
         .glow {
@@ -386,6 +552,11 @@ export default function Home() {
 
         .data-card-hover:hover {
           transform: translateY(-10px);
+=======
+      <style jsx global>{`
+        .glow {
+          text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+>>>>>>> Stashed changes
         }
       `}</style>
     </main>
